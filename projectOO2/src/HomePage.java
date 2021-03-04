@@ -22,7 +22,11 @@ import java.awt.Font;
 public class HomePage extends JFrame {
 
 	private JPanel contentPane;
-
+	
+	private PanelCercaProgetto panelCercaProgetto;
+	private PanelNuovoProgetto panelNuovoProgetto;
+	private PanelNuovoMeeting  panelNuovoMeeting;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -44,7 +48,7 @@ public class HomePage extends JFrame {
 	 */
 	public HomePage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 760, 490);
+		setBounds(100, 100, 803, 490);
 		setUndecorated(true);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -52,6 +56,10 @@ public class HomePage extends JFrame {
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		panelCercaProgetto = new PanelCercaProgetto();
+		panelNuovoProgetto = new PanelNuovoProgetto();
+		panelNuovoMeeting  = new PanelNuovoMeeting();
 		
 		JPanel panelMenu = new JPanel();
 		panelMenu.setBorder(null);
@@ -67,44 +75,60 @@ public class HomePage extends JFrame {
 		lblLogo.setBounds(6, 6, 188, 70);
 		panelMenu.add(lblLogo);
 		
-		JPanel panelCercaProgetto = new JPanel();
-		panelCercaProgetto.addMouseListener(new MenuButtonMouseAdapter(panelCercaProgetto));
-		panelCercaProgetto.setBackground(new Color(255, 255, 255));
-		panelCercaProgetto.setBounds(0, 149, 200, 70);
-		panelMenu.add(panelCercaProgetto);
-		panelCercaProgetto.setLayout(null);
+		JPanel paneCercaProgetto = new JPanel();
+		paneCercaProgetto.addMouseListener(new MenuButtonMouseAdapter(paneCercaProgetto) {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				menuClicked(panelCercaProgetto);
+			}
+		});
+		
+		paneCercaProgetto.setBackground(new Color(255, 255, 255));
+		paneCercaProgetto.setBounds(0, 149, 200, 70);
+		panelMenu.add(paneCercaProgetto);
+		paneCercaProgetto.setLayout(null);
 		
 		JLabel lblCercaProg = new JLabel("Cerca Progetto");
 		lblCercaProg.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		lblCercaProg.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCercaProg.setBounds(6, 6, 188, 58);
-		panelCercaProgetto.add(lblCercaProg);
+		paneCercaProgetto.add(lblCercaProg);
 		
-		JPanel panelNuovoProgetto = new JPanel();
-		panelNuovoProgetto.addMouseListener(new MenuButtonMouseAdapter(panelNuovoProgetto));
-		panelNuovoProgetto.setBackground(new Color(255, 255, 255));
-		panelNuovoProgetto.setBounds(0, 231, 200, 70);
-		panelMenu.add(panelNuovoProgetto);
-		panelNuovoProgetto.setLayout(null);
+		JPanel paneNuovoProgetto = new JPanel();
+		paneNuovoProgetto.addMouseListener(new MenuButtonMouseAdapter(paneNuovoProgetto){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				menuClicked(panelNuovoProgetto);
+			}
+		});
+		paneNuovoProgetto.setBackground(new Color(255, 255, 255));
+		paneNuovoProgetto.setBounds(0, 231, 200, 70);
+		panelMenu.add(paneNuovoProgetto);
+		paneNuovoProgetto.setLayout(null);
 		
 		JLabel lblNuovoProg = new JLabel("Nuovo Progetto");
 		lblNuovoProg.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		lblNuovoProg.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNuovoProg.setBounds(6, 6, 188, 58);
-		panelNuovoProgetto.add(lblNuovoProg);
+		paneNuovoProgetto.add(lblNuovoProg);
 		
-		JPanel panelNuovoMeeting = new JPanel();
-		panelNuovoMeeting.addMouseListener(new MenuButtonMouseAdapter(panelNuovoMeeting));
-		panelNuovoMeeting.setBackground(new Color(255, 255, 255));
-		panelNuovoMeeting.setBounds(0, 313, 200, 70);
-		panelMenu.add(panelNuovoMeeting);
-		panelNuovoMeeting.setLayout(null);
+		JPanel paneNuovoMeeting = new JPanel();
+		paneNuovoMeeting.addMouseListener(new MenuButtonMouseAdapter(paneNuovoMeeting){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				menuClicked(panelNuovoMeeting);
+			}
+		});
+		paneNuovoMeeting.setBackground(new Color(255, 255, 255));
+		paneNuovoMeeting.setBounds(0, 313, 200, 70);
+		panelMenu.add(paneNuovoMeeting);
+		paneNuovoMeeting.setLayout(null);
 		
 		JLabel lblNuovoMeet = new JLabel("Nuovo Meeting");
 		lblNuovoMeet.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		lblNuovoMeet.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNuovoMeet.setBounds(6, 6, 188, 58);
-		panelNuovoMeeting.add(lblNuovoMeet);
+		paneNuovoMeeting.add(lblNuovoMeet);
 		
 		JLabel lblExit = new JLabel("");
 		lblExit.addMouseListener(new MouseAdapter() {
@@ -120,10 +144,26 @@ public class HomePage extends JFrame {
 		Image exit = new ImageIcon(this.getClass().getResource("/exit.png")).getImage();
 		lblExit.setIcon(new ImageIcon(exit));
 		panelMenu.add(lblExit);
+			
+		JPanel panelMainContent = new JPanel();
+		panelMainContent.setBackground(Color.WHITE);
+		panelMainContent.setBounds(212, 6, 585, 478);
+		contentPane.add(panelMainContent);
+		panelMainContent.setLayout(null);
 		
-		JPanel panelContent = new JPanel();
-		panelContent.setBounds(212, 6, 542, 478);
-		contentPane.add(panelContent);
+		panelMainContent.add(panelCercaProgetto);
+		panelMainContent.add(panelNuovoProgetto);
+		panelMainContent.add(panelNuovoMeeting);
 		
+		menuClicked(paneCercaProgetto);
+
+	}
+	
+	public void menuClicked(JPanel panel) {
+		panelCercaProgetto.setVisible(false);
+		panelNuovoProgetto.setVisible(false);
+		panelNuovoMeeting.setVisible(false);
+		
+		panel.setVisible(true);
 	}
 }

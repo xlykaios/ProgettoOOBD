@@ -19,9 +19,7 @@ import java.awt.event.ActionEvent;
 
 public class PanelNuovoMeeting extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
+
 	public PanelNuovoMeeting() {
 		setBounds(0, 0, 585, 478);
 		setLayout(null);
@@ -127,4 +125,7 @@ public class PanelNuovoMeeting extends JPanel {
 		setVisible(true);
 
 	}
+	/**
+	 * AGGIUNGI LISTA PARTECIPANTI
+	 */
 }

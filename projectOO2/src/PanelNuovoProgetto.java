@@ -72,4 +72,6 @@ public class PanelNuovoProgetto extends JPanel {
 		setVisible(true);
 
 	}
+	//AGGIUNGI JFRAME CONFERMA CREAZIONE PROG
+	
 }

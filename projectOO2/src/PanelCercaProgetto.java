@@ -2,6 +2,8 @@ import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.JComboBox;
@@ -9,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 
 public class PanelCercaProgetto extends JPanel {
 	private JTextField textFieldResultsTopic;
@@ -18,6 +21,7 @@ public class PanelCercaProgetto extends JPanel {
 	 */
 	public PanelCercaProgetto() {
 		setBounds(0, 0, 585, 478);
+		setBackground(new Color(135, 206, 250));
 		setLayout(null);
 		setVisible(true);
 		
@@ -57,6 +61,7 @@ public class PanelCercaProgetto extends JPanel {
 		add(lblRisultati);
 		
 		textFieldResultsTopic = new JTextField();
+		textFieldResultsTopic.setEditable(false);
 		textFieldResultsTopic.setBounds(379, 164, 130, 27);
 		add(textFieldResultsTopic);
 		textFieldResultsTopic.setColumns(10);
@@ -64,6 +69,10 @@ public class PanelCercaProgetto extends JPanel {
 		JLabel lblNewLabel = new JLabel("RISULTATI RICERCA CON NOME PROGETTO + DATA???");
 		lblNewLabel.setBounds(6, 261, 573, 211);
 		add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("Cerca");
+		btnNewButton.setBounds(234, 214, 117, 29);
+		add(btnNewButton);
 
 	}
 }

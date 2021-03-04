@@ -155,7 +155,7 @@ public class HomePage extends JFrame {
 		panelMainContent.add(panelNuovoProgetto);
 		panelMainContent.add(panelNuovoMeeting);
 		
-		menuClicked(paneCercaProgetto);
+		menuClicked(panelCercaProgetto);
 
 	}
 	

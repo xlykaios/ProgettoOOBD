@@ -48,7 +48,6 @@ public class PanelNuovoProgetto extends JPanel {
 		add(lblTeamP);
 		
 		textFieldNome = new JTextField();
-		textFieldNome.setEditable(false);
 		textFieldNome.setBounds(298, 94, 130, 26);
 		add(textFieldNome);
 		textFieldNome.setColumns(10);

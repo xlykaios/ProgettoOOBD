@@ -8,6 +8,14 @@ import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.SwingConstants;
+import com.github.lgooddatepicker.components.DatePicker;
+import com.github.lgooddatepicker.components.TimePicker;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelNuovoMeeting extends JPanel {
 
@@ -18,6 +26,8 @@ public class PanelNuovoMeeting extends JPanel {
 		setBounds(0, 0, 585, 478);
 		setLayout(null);
 		setBackground(new Color(135, 206, 250));
+		
+		ConfermaCreazioneMeeting viewConfermaMeeting = new ConfermaCreazioneMeeting();
 		
 		JLabel labelNewMeet = new JLabel("Crea Nuovo Meeting");
 		labelNewMeet.setHorizontalAlignment(SwingConstants.CENTER);
@@ -72,6 +82,46 @@ public class PanelNuovoMeeting extends JPanel {
 		Image partecipantiIcon = new ImageIcon(this.getClass().getResource("/partecipanti-meeting.png")).getImage();
 		lblPartecipantiIcon.setIcon(new ImageIcon(partecipantiIcon));
 		add(lblPartecipantiIcon);
+		
+		JComboBox comboBoxTipoM = new JComboBox();
+		comboBoxTipoM.setModel(new DefaultComboBoxModel(new String[] {"IRL", "Online"}));
+		comboBoxTipoM.setBounds(300, 236, 135, 27);
+		add(comboBoxTipoM);
+		
+		JButton btnAddListaP = new JButton("Aggiungi");
+		btnAddListaP.setBounds(300, 302, 135, 29);
+		add(btnAddListaP);
+		
+		DatePicker datePicker = new DatePicker();		
+		datePicker.setBounds(300, 94, 212, 29);
+		add(datePicker);
+		
+		TimePicker timePicker = new TimePicker();
+		timePicker.setBounds(300, 153, 212, 29);
+		add(timePicker);
+		
+		JButton btnCreaMeet = new JButton("Crea");
+		btnCreaMeet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				viewConfermaMeeting.setVisible(true);
+				viewConfermaMeeting.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
+				ConfermaCreazioneMeeting obj = new ConfermaCreazioneMeeting();
+				
+				String meetingType = comboBoxTipoM.getSelectedItem().toString();
+				obj.textFieldModM.setText(meetingType);
+				
+				String selectedDate = datePicker.getDateStringOrEmptyString();
+				obj.textFieldDayM.setText(selectedDate);
+				
+				String selectedTime = timePicker.getTimeStringOrEmptyString().toString();
+				obj.textFieldHoursM.setText(selectedTime);
+				
+				obj.setVisible(true);
+			}
+		});
+		btnCreaMeet.setBounds(227, 410, 117, 29);
+		add(btnCreaMeet);
 		
 		
 		setVisible(true);

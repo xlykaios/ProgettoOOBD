@@ -128,6 +128,6 @@ public class PanelNuovoMeeting extends JPanel {
 	/**
 	 * AGGIUNGI LISTA PARTECIPANTI
 	 * 
-	 * CONFERMA CREAZIONE PROG
+	 * 
 	 */
 }

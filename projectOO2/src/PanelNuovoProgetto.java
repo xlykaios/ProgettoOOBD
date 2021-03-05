@@ -6,8 +6,11 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelNuovoProgetto extends JPanel {
 	private JTextField textFieldNome;
@@ -19,6 +22,8 @@ public class PanelNuovoProgetto extends JPanel {
 		setBounds(0, 0, 585, 478);
 		setLayout(null);
 		setBackground(new Color(135, 206, 250));
+		
+		ConfermaCreazioneProgetto viewConfermaProgetto = new ConfermaCreazioneProgetto();
 
 		
 		JLabel labelNewProj = new JLabel("Crea Nuovo Progetto");
@@ -67,11 +72,30 @@ public class PanelNuovoProgetto extends JPanel {
 		add(btnAddTeam);
 		
 		JButton btnCreaNewP = new JButton("Crea");
+		btnCreaNewP.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				viewConfermaProgetto.setVisible(true);
+				viewConfermaProgetto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
+				ConfermaCreazioneProgetto obj = new ConfermaCreazioneProgetto();
+				
+				String nomeProj = textFieldNome.getText().toString();
+				obj.textFieldNomeP.setText(nomeProj);
+				
+				String topicProj = comboBoxTopicNewP.getSelectedItem().toString();
+				obj.textFieldTopicP.setText(topicProj);
+				
+				
+				
+				obj.setVisible(true);
+				
+			}
+		});
 		btnCreaNewP.setBounds(234, 350, 117, 29);
 		add(btnCreaNewP);
 		setVisible(true);
 
 	}
-	//AGGIUNGI JFRAME CONFERMA CREAZIONE PROG
 	
 }

@@ -10,11 +10,19 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 public class PanelCercaProgetto extends JPanel {
 	private JTextField textFieldResultsTopic;
+	private JTable tableRisultatiRicerca;
+	
+	
 
 	/**
 	 * Create the panel.
@@ -66,13 +74,52 @@ public class PanelCercaProgetto extends JPanel {
 		add(textFieldResultsTopic);
 		textFieldResultsTopic.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("RISULTATI RICERCA CON NOME PROGETTO + DATA???");
-		lblNewLabel.setBounds(6, 261, 573, 211);
-		add(lblNewLabel);
-		
 		JButton btnNewButton = new JButton("Cerca");
+		//COLLEGAMENTO DB: ricerca progetti dal database in tabella
+		/**btnNewButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				//database connection
+				try {
+					//open connection
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection con = DriverManager.getConnection("url_", "root", "mysql@1234");
+					//ID is "root" - nomeprogetto is "mysql@1234"
+					
+					Statement st = con.createStatement();
+					//mysql query
+					String sql = "select * from ID";
+					ResultSet rs = st.executeQuery(sql);
+					
+					while(rs.next()) {
+						//data will be added until finish
+						String id = String.valueOf(rs.getInt("id"));
+						String nomeP = rs.getString("nome progetto");
+						
+						//string array for store data into jtable
+						String tbData[] = {id, nomeP};
+						DefaultTableModel tblModel = (DefaultTableModel)tableRisultatiRicerca.getModel();
+						
+						//add array string data into table ** ADD MYSQL JAR 
+						tblModel.addRow(tbData);
+						
+					}
+					con.close();
+					
+				} catch(Exception e) {
+					System.out.println(e.getMessage());
+				}
+			}
+		});*/
 		btnNewButton.setBounds(234, 214, 117, 29);
 		add(btnNewButton);
+		
+		String[] columnNames = {"ID", "NOME PROGETTO"};
+		
+		tableRisultatiRicerca = new JTable();
+		tableRisultatiRicerca.setBounds(99, 383, 268, -82);
+		tableRisultatiRicerca.setEnabled(false);
+		add(tableRisultatiRicerca);
 
 	}
 }

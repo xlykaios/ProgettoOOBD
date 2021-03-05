@@ -27,6 +27,9 @@ public class PanelNuovoMeeting extends JPanel {
 		
 		ConfermaCreazioneMeeting viewConfermaMeeting = new ConfermaCreazioneMeeting();
 		
+		AddTeamToNewProj viewAddList = new AddTeamToNewProj();
+
+		
 		JLabel labelNewMeet = new JLabel("Crea Nuovo Meeting");
 		labelNewMeet.setHorizontalAlignment(SwingConstants.CENTER);
 		labelNewMeet.setFont(new Font("Lucida Grande", Font.BOLD, 25));
@@ -90,6 +93,12 @@ public class PanelNuovoMeeting extends JPanel {
 		add(comboBoxTipoM);
 		
 		JButton btnAddListaP = new JButton("Aggiungi");
+		btnAddListaP.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				viewAddList.setVisible(true);
+				viewAddList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnAddListaP.setBounds(300, 302, 135, 29);
 		add(btnAddListaP);
 		

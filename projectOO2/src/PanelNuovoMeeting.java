@@ -53,6 +53,7 @@ public class PanelNuovoMeeting extends JPanel {
 		lblPartecipanti.setBounds(150, 287, 131, 49);
 		add(lblPartecipanti);
 		
+		//ICONS
 		JLabel lblDataIcon = new JLabel("");
 		lblDataIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDataIcon.setBounds(77, 92, 48, 49);
@@ -81,6 +82,8 @@ public class PanelNuovoMeeting extends JPanel {
 		lblPartecipantiIcon.setIcon(new ImageIcon(partecipantiIcon));
 		add(lblPartecipantiIcon);
 		
+		
+		
 		JComboBox comboBoxTipoM = new JComboBox();
 		comboBoxTipoM.setModel(new DefaultComboBoxModel(new String[] {"IRL", "Online"}));
 		comboBoxTipoM.setBounds(300, 236, 135, 27);
@@ -100,7 +103,10 @@ public class PanelNuovoMeeting extends JPanel {
 		
 		JButton btnCreaMeet = new JButton("Crea");
 		btnCreaMeet.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
+				
+				//Manda dati al JFrame di conferma
 				viewConfermaMeeting.setVisible(true);
 				viewConfermaMeeting.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				
@@ -116,6 +122,12 @@ public class PanelNuovoMeeting extends JPanel {
 				obj.textFieldHoursM.setText(selectedTime);
 				
 				obj.setVisible(true);
+				
+				//Refresh degli input fields
+				datePicker.setDate(null);
+				timePicker.setTime(null);
+				comboBoxTipoM.setSelectedItem(null);
+				
 			}
 		});
 		btnCreaMeet.setBounds(227, 410, 117, 29);
@@ -125,9 +137,4 @@ public class PanelNuovoMeeting extends JPanel {
 		setVisible(true);
 
 	}
-	/**
-	 * AGGIUNGI LISTA PARTECIPANTI
-	 * 
-	 * 
-	 */
 }

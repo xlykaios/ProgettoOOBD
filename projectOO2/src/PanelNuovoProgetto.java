@@ -24,7 +24,7 @@ public class PanelNuovoProgetto extends JPanel {
 		setBackground(new Color(135, 206, 250));
 		
 		ConfermaCreazioneProgetto viewConfermaProgetto = new ConfermaCreazioneProgetto();
-
+		AddTeamToNewProj viewAddTeam = new AddTeamToNewProj();
 		
 		JLabel labelNewProj = new JLabel("Crea Nuovo Progetto");
 		labelNewProj.setFont(new Font("Lucida Grande", Font.BOLD, 25));
@@ -68,6 +68,16 @@ public class PanelNuovoProgetto extends JPanel {
 		add(comboBoxAmbitoNewP);
 		
 		JButton btnAddTeam = new JButton("Add");
+		btnAddTeam.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				viewAddTeam.setVisible(true);
+				viewAddTeam.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
+				//AddTeamToNewProj obj = new AddTeamToNewProj();
+			}
+		});
+		
 		btnAddTeam.setBounds(298, 277, 130, 29);
 		add(btnAddTeam);
 		
@@ -85,8 +95,6 @@ public class PanelNuovoProgetto extends JPanel {
 				
 				String topicProj = comboBoxTopicNewP.getSelectedItem().toString();
 				obj.textFieldTopicP.setText(topicProj);
-				
-				
 				
 				obj.setVisible(true);
 				

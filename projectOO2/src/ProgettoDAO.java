@@ -120,7 +120,6 @@ public class ProgettoDAO{
 		 stmt.executeUpdate( sql + "VALUES('"+ID+"','"+state+"','"+lista_users+"','"+tipo+"','"+ambito+"','"+name+"');");
 			 }
 	 }
-	 
 	 public static void GetPartecipanti() throws SQLException{
 		 try {
 

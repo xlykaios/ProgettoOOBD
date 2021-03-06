@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -36,6 +37,12 @@ public class PanelCercaProgetto extends JPanel {
 		setBackground(new Color(135, 206, 250));
 		setLayout(null);
 		setVisible(true);
+		
+		tableRisultatiRicerca = new JTable();
+		tableRisultatiRicerca.setForeground(Color.WHITE);
+		tableRisultatiRicerca.setBackground(Color.GRAY);
+		tableRisultatiRicerca.setBounds(99, 422, 384, -121);
+		add(tableRisultatiRicerca);
 		
 		JLabel lblWelcome = new JLabel("Benvenuto Admin");
 		lblWelcome.setFont(new Font("Lucida Grande", Font.BOLD, 25));
@@ -62,7 +69,7 @@ public class PanelCercaProgetto extends JPanel {
 				textFieldResultsTopic.setText(selectedTopic);
 			}
 		});
-		//dati fittizzi - DA CAMBIARE in seguito all'utilizzo di un enum
+		//dati fittizi - DA CAMBIARE in seguito all'utilizzo di un enum
 		comboBoxTopic.setModel(new DefaultComboBoxModel(new String[] {"Topic_1", "Topic_2", "Topic_3"}));
 		comboBoxTopic.setBounds(379, 95, 130, 27);
 		add(comboBoxTopic);
@@ -79,6 +86,70 @@ public class PanelCercaProgetto extends JPanel {
 		textFieldResultsTopic.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Cerca");
+		/*collegamento DB_Antonio
+		
+System.out.println("——– PostgreSQL ” + “JDBC Connection Testing ————");
+
+try {
+
+Class.forName("org.postgresql.Driver");
+
+} catch (ClassNotFoundException e) {
+
+System.out.println("Where is your PostgreSQL JDBC Driver? ” + “Include in your library path!");
+e.printStackTrace();
+return;
+
+}
+
+System.out.println("PostgreSQL JDBC Driver Registered!");
+
+Connection connection = null;
+
+try {
+
+connection = DriverManager.getConnection("jdbc:postgresql://vexera.ddns.net:44044/project", "User",
+"1234");
+
+} catch (SQLException e) {
+
+System.out.println("Connection Failed! Check output console");
+e.printStackTrace();
+return;
+
+}
+
+if (connection != null) {
+
+System.out.println("Successfully added");
+
+Statement stmt = connection.createStatement();
+
+ResultSet rs = stmt.executeQuery( "select * from public.utenti ;" );
+
+while ( rs.next() ) {
+
+   int ID = rs.getInt("ID");
+
+   String Nome = rs.getString("Nome");
+
+   String Cognome  = rs.getString("Cognome");
+
+   System.out.printf( "ID = %s , Nome = %s, Cognome = %s ", ID ,Nome, Cognome );
+
+   System.out.println();
+
+}
+
+} else {
+
+System.out.println("Failed to make connection!");
+
+		}
+	}
+
+}
+		 */
 		
 		//COLLEGAMENTO DB: ricerca progetti dal database in tabella
 		btnNewButton.addActionListener(new ActionListener() {
@@ -120,11 +191,6 @@ public class PanelCercaProgetto extends JPanel {
 		add(btnNewButton);
 		
 		String[] columnNames = {"ID", "NOME PROGETTO"};
-		
-		tableRisultatiRicerca = new JTable();
-		tableRisultatiRicerca.setBounds(99, 383, 268, -82);
-		tableRisultatiRicerca.setEnabled(false);
-		add(tableRisultatiRicerca);
 
 	}
 }

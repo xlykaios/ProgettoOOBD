@@ -2,6 +2,7 @@ import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -22,7 +23,10 @@ public class PanelCercaProgetto extends JPanel {
 	private JTextField textFieldResultsTopic;
 	private JTable tableRisultatiRicerca;
 	
-	
+	private String dbConnessioneDriver   = "com.mysql.jdbc.Driver";
+	private String dbConnessioneUrl      = "vexera.ddns.net";
+	private String dbConnessioneUser     = "User";
+	private String dbConnessionePassword = "1234";
 
 	/**
 	 * Create the panel.
@@ -75,15 +79,16 @@ public class PanelCercaProgetto extends JPanel {
 		textFieldResultsTopic.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Cerca");
+		
 		//COLLEGAMENTO DB: ricerca progetti dal database in tabella
-		/**btnNewButton.addActionListener(new ActionListener() {
+		btnNewButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				//database connection
 				try {
 					//open connection
-					Class.forName("com.mysql.jdbc.Driver");
-					Connection con = DriverManager.getConnection("vexera.ddns.net", "User", "1234");
+					Class.forName(dbConnessioneDriver);
+					Connection con = DriverManager.getConnection(dbConnessioneUrl, dbConnessioneUser, dbConnessionePassword);
 					//ID is "User" - nomeprogetto is "Project"
 					
 					Statement st = con.createStatement();
@@ -106,11 +111,11 @@ public class PanelCercaProgetto extends JPanel {
 					}
 					con.close();
 					
-				} catch(Exception e) {
-					System.out.println(e.getMessage());
+				} catch(Exception e1) {
+					System.out.println(e1.getMessage());
 				}
 			}
-		});*/
+		});
 		btnNewButton.setBounds(234, 214, 117, 29);
 		add(btnNewButton);
 		

@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Meeting {
 	Date Appuntamento;
-	boolean Modalità; //online/offline
+	boolean Modalita; //online/offline
 	int Num_partecip;
 	String Argomenti;
 	ArrayList<User> partecipanti;

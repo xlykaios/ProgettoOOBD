@@ -1,7 +1,7 @@
 import java.sql.*;
 
 public class ProgettoDAO{
-	private final String url = "jdbc:postgresql://vexera.ddns.net:44044/project";
+	/* private final String url = "jdbc:postgresql://vexera.ddns.net:44044/project";
 	private final String user = "User";
 	private final String password = "1234";
 	 public Connection connect() {
@@ -13,15 +13,47 @@ public class ProgettoDAO{
 	            System.out.println(e.getMessage());
 	        }
 
-	        return conn;
-	    }
+	        return conn; 
+	    } */
 	 public static void getProjectsbyTopic() throws SQLException{
+		 try {
+
+			 Class.forName("org.postgresql.Driver");
+
+			 } catch (ClassNotFoundException e) {
+
+			 System.out.println("Where is your PostgreSQL JDBC Driver? ” + “Include in your library path!");
+			 e.printStackTrace();
+			 return;
+
+			 }
+
+			 System.out.println("PostgreSQL JDBC Driver Registered!");
+
+			 Connection connection = null;
+
+			 try {
+
+			 connection = DriverManager.getConnection("jdbc:postgresql://vexera.ddns.net:44044/project", "User",
+			 "1234");
+
+			 } catch (SQLException e) {
+
+			 System.out.println("Connection Failed! Check output console");
+			 e.printStackTrace();
+			 return;
+
+			 }
+
+			 if (connection != null) {
+
+			 System.out.println("Successfully added");
+
 		 //inserire qui la stringa di selezione dinamica del tipo di dato ricercato
 		 String search = "ambito = '' ";
 		 String sql = "select * from public.progetti where";
-		 ProgettoDAO byTopic = new ProgettoDAO();
-		 Connection conn=byTopic.connect();
-		 Statement stmt = conn.createStatement();
+		
+		 Statement stmt = connection.createStatement();
 		 ResultSet rs = stmt.executeQuery( sql + search );
 		 //qui verranno riportati tutti i valori ottenuti dal getprojects by topic
 		 while ( rs.next() ) {
@@ -38,9 +70,43 @@ public class ProgettoDAO{
 
 			   System.out.println();
 
-			}
-	 }
+		 		}	
+			 }
+	 	}
 	 public static void AddProject() throws SQLException{
+		 try {
+
+			 Class.forName("org.postgresql.Driver");
+
+			 } catch (ClassNotFoundException e) {
+
+			 System.out.println("Where is your PostgreSQL JDBC Driver? ” + “Include in your library path!");
+			 e.printStackTrace();
+			 return;
+
+			 }
+
+			 System.out.println("PostgreSQL JDBC Driver Registered!");
+
+			 Connection connection = null;
+
+			 try {
+
+			 connection = DriverManager.getConnection("jdbc:postgresql://vexera.ddns.net:44044/project", "User",
+			 "1234");
+
+			 } catch (SQLException e) {
+
+			 System.out.println("Connection Failed! Check output console");
+			 e.printStackTrace();
+			 return;
+
+			 }
+
+			 if (connection != null) {
+
+			 System.out.println("Successfully added");
+			 
 		 int ID = 0; //inserire valore id 
 		 boolean state = true;
 		 int[] lista_users = {0,1,2}; //inserire lista utenti partecipanti tramite i loro id
@@ -49,18 +115,48 @@ public class ProgettoDAO{
 		 String name = "test"; //inserimento del nome progetto
 		 
 		 String sql = "insert into public.progetti";
-		 ProgettoDAO byTopic = new ProgettoDAO();
-		 Connection conn=byTopic.connect();
-		 Statement stmt = conn.createStatement();
+		 
+		 Statement stmt = connection.createStatement();
 		 stmt.executeUpdate( sql + "VALUES('"+ID+"','"+state+"','"+lista_users+"','"+tipo+"','"+ambito+"','"+name+"');");
+			 }
 	 }
 	 
 	 public static void GetPartecipanti() throws SQLException{
-		 
+		 try {
+
+			 Class.forName("org.postgresql.Driver");
+
+			 } catch (ClassNotFoundException e) {
+
+			 System.out.println("Where is your PostgreSQL JDBC Driver? ” + “Include in your library path!");
+			 e.printStackTrace();
+			 return;
+
+			 }
+
+			 System.out.println("PostgreSQL JDBC Driver Registered!");
+
+			 Connection connection = null;
+
+			 try {
+
+			 connection = DriverManager.getConnection("jdbc:postgresql://vexera.ddns.net:44044/project", "User",
+			 "1234");
+
+			 } catch (SQLException e) {
+
+			 System.out.println("Connection Failed! Check output console");
+			 e.printStackTrace();
+			 return;
+
+			 }
+
+			 if (connection != null) {
+
+			 System.out.println("Successfully added");
 		 String select = "'ID'";  //selezione dell'id del progetto di cui stampare  la lista partecipanti
 		 String sql = "select lista_IDusers from public.progetti where ID = ";
-		 ProgettoDAO byTopic = new ProgettoDAO();
-		 Connection connection=byTopic.connect();
+		 
 		 Statement stmt = connection.createStatement();
 		 int key = 1; //id del progetto ricercato
 		 String utenti = "";
@@ -97,5 +193,6 @@ public class ProgettoDAO{
 		 	}
 		 }
 	 }
+	}
 }
 

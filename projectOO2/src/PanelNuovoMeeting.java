@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Image;
 
@@ -114,7 +116,17 @@ public class PanelNuovoMeeting extends JPanel {
 		btnCreaMeet.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				//Check input non vuoti
 				
+				//data - ora - tipo - partec
+				if (datePicker.getDateStringOrEmptyString().isEmpty() || 
+						timePicker.getTimeStringOrEmptyString().isEmpty() || 
+						comboBoxTipoM.getSelectedItem().equals(null)) {
+					
+					viewConfermaMeeting.setVisible(false);
+					JOptionPane.showMessageDialog(null, "Inserisci valori");
+				} else {
+			
 				//Manda dati al JFrame di conferma
 				viewConfermaMeeting.setVisible(true);
 				viewConfermaMeeting.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -136,7 +148,7 @@ public class PanelNuovoMeeting extends JPanel {
 				datePicker.setDate(null);
 				timePicker.setTime(null);
 				comboBoxTipoM.setSelectedItem(null);
-				
+				}
 			}
 		});
 		btnCreaMeet.setBounds(227, 410, 117, 29);

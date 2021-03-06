@@ -1,5 +1,6 @@
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import java.awt.Color;
@@ -85,24 +86,35 @@ public class PanelNuovoProgetto extends JPanel {
 		btnCreaNewP.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				viewConfermaProgetto.setVisible(true);
-				viewConfermaProgetto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				
-				ConfermaCreazioneProgetto obj = new ConfermaCreazioneProgetto();
+				//Check input non vuoti
+				if (textFieldNome.getText().isEmpty() || 
+						comboBoxTopicNewP.getSelectedItem().equals(null) || 
+						comboBoxAmbitoNewP.getSelectedItem().equals(null)) {
+					viewConfermaProgetto.setVisible(false);
+					JOptionPane.showMessageDialog(null, "Inserisci valori");
+				} else {
+					viewConfermaProgetto.setVisible(true);
+					viewConfermaProgetto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					
+					ConfermaCreazioneProgetto obj = new ConfermaCreazioneProgetto();
+					
+					String nomeProj = textFieldNome.getText().toString();
+					obj.textFieldNomeP.setText(nomeProj);
+					
+					String topicProj = comboBoxTopicNewP.getSelectedItem().toString();
+					obj.textFieldTopicP.setText(topicProj);
+					
+					obj.setVisible(true);
+				}
 				
-				String nomeProj = textFieldNome.getText().toString();
-				obj.textFieldNomeP.setText(nomeProj);
-				
-				String topicProj = comboBoxTopicNewP.getSelectedItem().toString();
-				obj.textFieldTopicP.setText(topicProj);
-				
-				obj.setVisible(true);
 				
 			}
 		});
 		btnCreaNewP.setBounds(234, 350, 117, 29);
 		add(btnCreaNewP);
 		setVisible(true);
+		
 
 	}
 	

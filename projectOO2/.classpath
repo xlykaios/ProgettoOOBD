@@ -8,6 +8,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="LGoodDatePicker-11.1.0.jar"/>
-	<classpathentry kind="lib" path="E:/UNINA/Java/Wspace2/Test/postgresql-42.2.19.jar"/>
+	<classpathentry kind="lib" path="postgresql-42.2.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

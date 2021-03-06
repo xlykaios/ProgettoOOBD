@@ -83,8 +83,8 @@ public class PanelCercaProgetto extends JPanel {
 				try {
 					//open connection
 					Class.forName("com.mysql.jdbc.Driver");
-					Connection con = DriverManager.getConnection("url_", "root", "mysql@1234");
-					//ID is "root" - nomeprogetto is "mysql@1234"
+					Connection con = DriverManager.getConnection("vexera.ddns.net", "User", "1234");
+					//ID is "User" - nomeprogetto is "Project"
 					
 					Statement st = con.createStatement();
 					//mysql query

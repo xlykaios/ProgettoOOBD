@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class PanelNuovoProgetto extends JPanel {
@@ -19,7 +20,7 @@ public class PanelNuovoProgetto extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PanelNuovoProgetto() {
+	public PanelNuovoProgetto() throws SQLException{
 		setBounds(0, 0, 585, 478);
 		setLayout(null);
 		setBackground(new Color(135, 206, 250));

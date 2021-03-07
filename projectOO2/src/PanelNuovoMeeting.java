@@ -17,12 +17,13 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class PanelNuovoMeeting extends JPanel {
 
 
-	public PanelNuovoMeeting() {
+	public PanelNuovoMeeting() throws SQLException {
 		setBounds(0, 0, 585, 478);
 		setLayout(null);
 		setBackground(new Color(135, 206, 250));

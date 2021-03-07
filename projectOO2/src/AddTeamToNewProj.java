@@ -21,6 +21,7 @@ import java.util.Vector;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -58,7 +59,7 @@ public class AddTeamToNewProj extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddTeamToNewProj() {
+	public AddTeamToNewProj() throws SQLException{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 660);
 		contentPane = new JPanel();
@@ -188,6 +189,13 @@ public class AddTeamToNewProj extends JFrame {
 		});
 		btnDoneLista.setBounds(166, 581, 117, 29);
 		contentPane.add(btnDoneLista);
+		
+		
+		ProgettoDAO.GetPartecipanti();
+		ArrayList<Utenti> partecipanti = ProgettoDAO.partecip;
+		JList<Object> list = new JList<Object>(partecipanti.toArray());
+		list.setBounds(100, 405, 248, 125);
+		contentPane.add(list);
 		
 	
 		

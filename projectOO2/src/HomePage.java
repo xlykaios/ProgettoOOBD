@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,7 +31,7 @@ public class HomePage extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -45,8 +46,9 @@ public class HomePage extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public HomePage() {
+	public HomePage() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 803, 490);
 		setUndecorated(true);

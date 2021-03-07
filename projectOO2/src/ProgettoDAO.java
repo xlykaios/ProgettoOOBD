@@ -2,6 +2,8 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ProgettoDAO{
+	static ArrayList<Utenti> partecip;
+	
 	/* private final String url = "jdbc:postgresql://vexera.ddns.net:44044/project";
 	private final String user = "User";
 	private final String password = "1234";
@@ -191,7 +193,7 @@ public class ProgettoDAO{
 			 		partecipanti.add(new Utenti(User_ID,User_Name,User_Surname,CF));
 			 		}
 			 	}
-			 }	
+			 }	partecip = partecipanti;
 			 }
 	}
 }

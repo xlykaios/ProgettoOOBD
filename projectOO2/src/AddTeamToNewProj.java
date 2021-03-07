@@ -14,11 +14,16 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
 
 public class AddTeamToNewProj extends JFrame {
 
@@ -26,7 +31,11 @@ public class AddTeamToNewProj extends JFrame {
 	private JTextField textFieldSalary;
 	private JTextField textFieldVal;
 
-
+	ArrayList<Utenti> partecipanti = new ArrayList<Utenti>();
+	//ProgettoDAO = new ProgettoDAO();
+	
+	String nome = Utenti.class.getName();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -137,12 +146,39 @@ public class AddTeamToNewProj extends JFrame {
 		comboBoxMemPerTopic.setBounds(270, 247, 130, 20);
 		contentPane.add(comboBoxMemPerTopic);
 		
+		JList list = new JList(partecipanti.toArray());
+		list.setBounds(6, 375, 438, 183);
+		
+		/**JList list = new JList(partecipanti.toArray());
+		DefaultListModel listModel = new DefaultListModel();
+		for (int i = 0; i < arrayList().size(); i++)
+		{
+		    listModel.addElement(arrayList().get(i));
+		}
+		list.setModel(listModel);*/
+		
+		DefaultComboBoxModel model = new DefaultComboBoxModel(partecipanti.toArray(new String[partecipanti.size()]));
+		list.setModel(model);
+		contentPane.add(list);
+		
+		
 		JButton btnCercaPartecipanti = new JButton("Cerca");
+		btnCercaPartecipanti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//list.add(list, Utenti.class.getName());
+				for (int i = 0; i < partecipanti.size(); i++) {
+			//	list.add(partecipanti.get(i).Nome);
+			//	list.add(partecipanti.get(i).Cognome);
+			//	list.add(partecipanti.get(i).CF);
+				}
+			}
+		});
 		btnCercaPartecipanti.setBounds(166, 326, 117, 29);
 		contentPane.add(btnCercaPartecipanti);
 		
 
 		
+
 	
 		
 		//SALVERà I DATI DELLA LISTA 
@@ -158,7 +194,8 @@ public class AddTeamToNewProj extends JFrame {
 		});
 		btnDoneLista.setBounds(166, 581, 117, 29);
 		contentPane.add(btnDoneLista);
-
+		
+		
 		
 
 	}

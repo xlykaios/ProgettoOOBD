@@ -157,7 +157,6 @@ public class ProgettoDAO{
 				 ArrayList<Utenti> partecipanti = new ArrayList<Utenti>();
 				 String select = "'ID'";  //selezione dell'id del progetto di cui stampare  la lista partecipanti
 				 String sql = "select lista_IDusers from public.progetti where ID = ";
-				 
 				 Statement stmt = connection.createStatement();
 				 int key = 1; //id del progetto ricercato
 				 String utenti = "";

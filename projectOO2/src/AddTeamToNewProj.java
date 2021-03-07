@@ -25,7 +25,7 @@ public class AddTeamToNewProj extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldSalary;
 	private JTextField textFieldVal;
-	private JTextField txtQuiVisualizzeremoI;
+
 
 	/**
 	 * Launch the application.
@@ -141,16 +141,9 @@ public class AddTeamToNewProj extends JFrame {
 		btnCercaPartecipanti.setBounds(166, 326, 117, 29);
 		contentPane.add(btnCercaPartecipanti);
 		
-		JPanel panelRisRicerca = new JPanel();
-		panelRisRicerca.setBounds(6, 374, 438, 195);
-		contentPane.add(panelRisRicerca);
-		panelRisRicerca.setLayout(null);
+
 		
-		txtQuiVisualizzeremoI = new JTextField();
-		txtQuiVisualizzeremoI.setText("Qui visualizzeremo i risultati della ricerca"); //: nome membri, cognome ed id in tabella. Con relativo Bottone Add-Delete dalla lista
-		txtQuiVisualizzeremoI.setBounds(6, 23, 408, 149);
-		panelRisRicerca.add(txtQuiVisualizzeremoI);
-		txtQuiVisualizzeremoI.setColumns(10);
+	
 		
 		//SALVERà I DATI DELLA LISTA 
 		JButton btnDoneLista = new JButton("Done");

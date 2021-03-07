@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ProgettoDAO{
 	/* private final String url = "jdbc:postgresql://vexera.ddns.net:44044/project";
@@ -152,46 +153,47 @@ public class ProgettoDAO{
 
 			 if (connection != null) {
 
-			 System.out.println("Successfully added");
-		 String select = "'ID'";  //selezione dell'id del progetto di cui stampare  la lista partecipanti
-		 String sql = "select lista_IDusers from public.progetti where ID = ";
-		 
-		 Statement stmt = connection.createStatement();
-		 int key = 1; //id del progetto ricercato
-		 String utenti = "";
-		 ResultSet rs = stmt.executeQuery( "select * from public.progetti");
-		 while ( rs.next() ) {
-		 	int ID = rs.getInt("ID_Proj");
-		   
-		    	if (ID==key) 
-		    		utenti = rs.getString("lista_IDusers");
-		 } // FINE QUERY RICERCA PROGETTO
-
-		 //INZIO QUERY STAMPA UTENTI
-		 System.out.println(utenti);
-		 String intValue = utenti.replaceAll("[^0-9]", " ");
-		 System.out.println(intValue);
-		 for(int i = 0; i < intValue.length(); i++) {
-		 	char ch = intValue.charAt(i);
-		 	String temp="";
-		 	if(Character.isDigit(ch)) {
-		 		temp += ch;
-		 		int numb = Integer.parseInt(temp);
-		 		
-		 		Statement stmt2 = connection.createStatement();
-		 		ResultSet r1 = stmt2.executeQuery("SELECT * FROM utenti WHERE \"ID\" = '"+numb+"'");
-		 		while ( r1.next() ) {
-		 			
-		 			//valori da passare alla table
-		 		int User_ID = r1.getInt("ID");
-		 		String User_Name = r1.getString("Nome");
-		 		String User_Surname = r1.getString("Cognome");
-		 		String CF = r1.getString("CF");
-		 		
-		 		}
-		 	}
-		 }
-	 }
+				 System.out.println("Successfully added");
+				 ArrayList<Utenti> partecipanti = new ArrayList<Utenti>();
+				 String select = "'ID'";  //selezione dell'id del progetto di cui stampare  la lista partecipanti
+				 String sql = "select lista_IDusers from public.progetti where ID = ";
+				 
+				 Statement stmt = connection.createStatement();
+				 int key = 1; //id del progetto ricercato
+				 String utenti = "";
+				 ResultSet rs = stmt.executeQuery( "select * from public.progetti");
+				 while ( rs.next() ) {
+				 	int ID = rs.getInt("ID_Proj");
+				   
+				    	if (ID==key) 
+				    		utenti = rs.getString("lista_IDusers");
+				 } // FINE QUERY RICERCA PROGETTO
+	
+			 //INZIO QUERY STAMPA UTENTI
+			 
+			 String intValue = utenti.replaceAll("[^0-9]", " ");
+			
+			 for(int i = 0; i < intValue.length(); i++) {
+			 	char ch = intValue.charAt(i);
+			 	String temp="";
+			 	if(Character.isDigit(ch)) {
+			 		temp += ch;
+			 		int numb = Integer.parseInt(temp);
+			 		
+			 		Statement stmt2 = connection.createStatement();
+			 		ResultSet r1 = stmt2.executeQuery("SELECT * FROM utenti WHERE \"ID\" = '"+numb+"'");
+			 		while ( r1.next() ) {
+			 			
+			 			//valori da passare alla table
+			 		int User_ID = r1.getInt("ID");
+			 		String User_Name = r1.getString("Nome");
+			 		String User_Surname = r1.getString("Cognome");
+			 		String CF = r1.getString("CF");
+			 		partecipanti.add(new Utenti(User_ID,User_Name,User_Surname,CF));
+			 		}
+			 	}
+			 }	
+			 }
 	}
 }
 

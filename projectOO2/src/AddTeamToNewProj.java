@@ -191,8 +191,8 @@ public class AddTeamToNewProj extends JFrame {
 		contentPane.add(btnDoneLista);
 		
 		
-		ProgettoDAO.GetPartecipanti();
-		ArrayList<Utenti> partecipanti = ProgettoDAO.partecip;
+		FinalDAO.GetPartecipanti();
+		ArrayList<Utenti> partecipanti = FinalDAO.partecip;
 		JList<Object> list = new JList<Object>(partecipanti.toArray());
 		list.setBounds(100, 405, 248, 125);
 		contentPane.add(list);

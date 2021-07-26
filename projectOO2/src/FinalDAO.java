@@ -84,13 +84,14 @@ public class FinalDAO {
 		 boolean state = true;
 		 int[] lista_users = {0,1,2}; //inserire lista utenti partecipanti tramite i loro id
 		  //inserimento del tipo
-		 String topic = "test"; //inserimento dell'ambito
+		 String ambito = "test";
+		 String tipo = "test"; //inserimento dell'ambito
 		 String name = "test"; //inserimento del nome progetto
 		 
 		 String sql = "insert into public.progetti";
 		 
 		 Statement stmt = connection.createStatement();
-		 stmt.executeUpdate( sql + "VALUES('"+ID+"','"+state+"','"+lista_users+"','"+topic+"','"+name+"');");
+		 stmt.executeUpdate( sql + "VALUES('"+ID+"','"+state+"','"+lista_users+"','"+name+"','"+tipo+"','"+ambito+"');");
 	}
 	
 	public static void GetPartecipanti() throws SQLException{

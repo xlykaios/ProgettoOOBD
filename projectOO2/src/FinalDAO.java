@@ -65,10 +65,18 @@ public class FinalDAO {
 			   int ID = rs.getInt("ID");
 
 			   String Nome = rs.getString("name");
+
+			   String Ambito  = rs.getString("ambito");
 			   
+<<<<<<< HEAD
 			   String Tipo = rs.getString("topic");
 
 			   System.out.printf( "ID = %s , Nome = %s, Topic = %s ", ID ,Nome, Topic );
+=======
+			   String Tipo = rs.getString("tipo");
+
+			   System.out.printf( "ID = %s , Nome = %s, Ambito = %s , Tipo = %s ", ID ,Nome, Ambito, Tipo );
+>>>>>>> parent of 6112da0 (Debug)
 
 			   System.out.println();
 

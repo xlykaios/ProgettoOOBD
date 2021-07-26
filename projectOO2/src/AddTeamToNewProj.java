@@ -146,7 +146,7 @@ public class AddTeamToNewProj extends JFrame {
 		contentPane.add(textFieldVal);
 		
 		JComboBox comboBoxMemPerTopic = new JComboBox();
-		comboBoxMemPerTopic.setModel(new DefaultComboBoxModel(new String[] {"Topic_1", "Topic_2", "Topic_3"}));
+		comboBoxMemPerTopic.setModel(new DefaultComboBoxModel(new String[] {"Ricerca di Base", "Sviluppo Industriale", "Ricerca Industriale", "Sviluppo Sperimentale", "Ricerca Sperimentale"}));
 		comboBoxMemPerTopic.setBounds(270, 247, 130, 20);
 		contentPane.add(comboBoxMemPerTopic);
 		

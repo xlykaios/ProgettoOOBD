@@ -54,7 +54,8 @@ public class FinalDAO {
 		Connection connection = FinalDAO.connessione();
 		 //inserire qui la stringa di selezione dinamica del tipo di dato ricercato
 		 String search = "topic = '' ";
-		 String sql = "select * from public.progetti where";
+		 String sql = "select * from public.progetti where ";
+		 // selezione progetto in base al topic
 		
 		 Statement stmt = connection.createStatement();
 		 ResultSet rs = stmt.executeQuery( sql );

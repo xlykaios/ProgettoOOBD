@@ -188,13 +188,13 @@ public class PanelCercaProgetto extends JPanel {
 			 }
 
 			 if (connection != null) { 
-				String sql = "select * from public.progetti where \"tipo\" = + selectedTopic + ";
+					String sql = "select * from public.progetti where tipo = "+ selectedTopic +"";
 
 
-				try {
-					Statement pst = connection.prepareStatement(sql);
-					ResultSet rs = pst.executeQuery(sql);
-					//String text = textAreaRisProj.setText(text);
+					try {
+						Statement pst = connection.createStatement();
+						ResultSet rs = pst.executeQuery(sql);
+						//String text = textAreaRisProj.setText(text);
 					
 					while(rs.next()) {
 					//line aper linea - mostrare i nomi dei progetti per topic selezionato

@@ -50,16 +50,16 @@ public class FinalDAO {
 			 Statement stmt = connection.createStatement();
 			 stmt.executeUpdate( sql + " VALUES('"+ID+"','"+Name+"','"+Date+"','"+Argomenti+"','"+lista_users+"','"+online+"');");
 		 }
-	public static void getProjectsbyTopic() throws SQLException{
+	public static void getProjectsbyTopic(String SelectedTopic) throws SQLException{
 		Connection connection = FinalDAO.connessione();
 		 //inserire qui la stringa di selezione dinamica del tipo di dato ricercato
-
-		 String search = "ambito = '' ";
+			
+		 String search = "ambito = ";
 		 String sql = "select * from public.progetti where";
 
 		
 		 Statement stmt = connection.createStatement();
-		 ResultSet rs = stmt.executeQuery( sql + search );
+		 ResultSet rs = stmt.executeQuery( sql + search + SelectedTopic );
 		 //qui verranno riportati tutti i valori ottenuti dal getprojects by topic
 		 while ( rs.next() ) {
 
@@ -72,10 +72,12 @@ public class FinalDAO {
 			   String Tipo = rs.getString("tipo");
 
 			   System.out.printf( "ID = %s , Nome = %s, Ambito = %s , Tipo = %s ", ID ,Nome, Ambito, Tipo );
+			   
+			   String finale = "ID) "+ID+" // "+Nome+" // "+Ambito+" // "+Tipo+"" ;
 
 			   System.out.println();
 
-		 		}	
+		 		}
 			 }
 	public static void AddProject() throws SQLException{
 		 Connection connection = FinalDAO.connessione();

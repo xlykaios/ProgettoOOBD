@@ -21,6 +21,8 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 
+
+
 public class PanelCercaProgetto extends JPanel {
 	private JTextField textFieldResultsTopic;
 	private JTable tableRisultatiRicerca;
@@ -36,8 +38,18 @@ public class PanelCercaProgetto extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @throws SQLException 
 	 */
-	public PanelCercaProgetto() {
+	public enum Ambito {
+		Informatica,
+		Fisica,
+		Matematica,
+		Economia,
+		Medicina,
+		Automatismi,
+		Meccanica
+	}
+	public PanelCercaProgetto() throws SQLException {
 		setBounds(0, 0, 585, 478);
 		setBackground(new Color(135, 206, 250));
 		setLayout(null);
@@ -68,7 +80,9 @@ public class PanelCercaProgetto extends JPanel {
 		lblRicercaProg.setBounds(99, 74, 268, 58);
 		add(lblRicercaProg);
 		
-		JComboBox comboBoxTopic = new JComboBox();
+		comboBoxTopic = new JComboBox();
+		comboBoxTopic.setModel(new DefaultComboBoxModel(Ambito.values()));
+		
 		comboBoxTopic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String selectedTopic = comboBoxTopic.getSelectedItem().toString();
@@ -97,13 +111,18 @@ public class PanelCercaProgetto extends JPanel {
 		btnCercaProj.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				updatetextAreaRisProj();
+				try {
+					updatetextAreaRisProj();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				}
 		});
 		btnCercaProj.setBounds(234, 214, 117, 29);
 		add(btnCercaProj);
 		
-		JTextArea textAreaRisProj = new JTextArea();
+		textAreaRisProj = new JTextArea();	
 		textAreaRisProj.setEditable(false);
 		textAreaRisProj.setBounds(100, 274, 384, 174);
 		add(textAreaRisProj);
@@ -146,7 +165,7 @@ public class PanelCercaProgetto extends JPanel {
 			 if (connection != null) { 
 				String sql = "select * from public.progetti";
 				try {
-					Statement pst = connection.prepareStatement(sql);
+					Statement pst = connection.createStatement();
 					ResultSet rs = pst.executeQuery(sql);
 					
 					while(rs.next()) {
@@ -154,7 +173,7 @@ public class PanelCercaProgetto extends JPanel {
 					}
 				} catch (Exception e) {
 
-					 System.out.println("Where is your PostgreSQL JDBC Driver? � + �Include in your library path!");
+					 System.out.println("Update SQL");
 					 e.printStackTrace();
 					 return;
 
@@ -164,52 +183,32 @@ public class PanelCercaProgetto extends JPanel {
 	
 	
 	//update textAreaRisProj - predere i topic dal db e inserirli nel cmbo box
-	public void updatetextAreaRisProj()  { 
-		try {
+	public void updatetextAreaRisProj() throws SQLException  { 
+		Connection connection = FinalDAO.connessione();
+		 //inserire qui la stringa di selezione dinamica del tipo di dato ricercato
+		 String selectedTopic = comboBoxTopic.getSelectedItem().toString();
+		 String search = "'";
+		 String sql = "select * from public.progetti where ambito = '";
+		 
+		
+		 Statement stmt = connection.createStatement();
+		 ResultSet rs = stmt.executeQuery( sql + selectedTopic + search );
+		
+		 textAreaRisProj.setText("");
+		 //qui verranno riportati tutti i valori ottenuti dal getprojects by topic
+		 while ( rs.next() ) {
 
-			 Class.forName("org.postgresql.Driver");
+			   int ID = rs.getInt("ID_Proj");
 
-			 } catch (ClassNotFoundException e) {
-			 System.out.println("Where is your PostgreSQL JDBC Driver? � + �Include in your library path!");
-			 e.printStackTrace();
-			 return;
-			 }
-			 System.out.println("PostgreSQL JDBC Driver Registered!");
-			 Connection connection = null;
+			   String Nome = rs.getString("name");
+			   
+			   String Ambito  = rs.getString("ambito");
+			   
+			   String Tipo = rs.getString("tipo");
 
-			 try {
-			 connection = DriverManager.getConnection("jdbc:postgresql://vexera.ddns.net:44044/project", "User",
-			 "1234");
-			 } catch (SQLException e) {
-
-			 System.out.println("Connection Failed! Check output console");
-			 e.printStackTrace();
-			 return;
-			 }
-
-			 if (connection != null) { 
-					String sql = "select * from public.progetti where tipo = "+ selectedTopic +"";
-
-
-					try {
-						Statement pst = connection.createStatement();
-						ResultSet rs = pst.executeQuery(sql);
-						//String text = textAreaRisProj.setText(text);
-					
-					while(rs.next()) {
-					//line aper linea - mostrare i nomi dei progetti per topic selezionato
-				//		textAreaRisProj = textAreaRisProj.
-						//text += textAreaRisProj[1];
-		                
-						//textAreaRisProj.setText() += Environment.NewLine;
-					}
-				} catch (Exception e) {
-
-					 System.out.println("Where is your PostgreSQL JDBC Driver? � + �Include in your library path!");
-					 e.printStackTrace();
-					 return;
-
-					 }
-			}
+			   String finale = "ID) "+ID+" // "+Nome+" // "+Ambito+" // "+Tipo+" \n" ;
+			   
+			   textAreaRisProj.append(finale);
+		 	}
 }
 }

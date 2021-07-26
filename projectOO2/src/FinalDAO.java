@@ -9,25 +9,6 @@ import java.util.ArrayList;
  * accesso diretto al database 
  * 2) Eventuali funzioni singole di DAO da implementare con l'sql per ottenere i risultati voluti*/
 public class FinalDAO {
-	
-	public enum Ambito {
-		Informatica,
-		Fisica,
-		Matematica,
-		Economia,
-		Medicina,
-		Automatismi,
-		Meccanica
-	}
-	
-	public enum Tipo{
-		Ricerca di Base,
-		Ricerca Industriale,
-		Ricerca Sperimentale,
-		Sviluppo Industriale,
-		Sviluppo Sperimentale
-	}
-	
 	static ArrayList<Utenti> partecip;
 		/* Si parte dal presupposto che una funzione di tipo connessione debba essere necessariamente utilizzata
 		 * dal momento che tutte le funzioni di SQL richiedono un parametro di tipo Connection dalla jSQL*/
@@ -83,16 +64,12 @@ public class FinalDAO {
 			   int ID = rs.getInt("ID");
 
 			   String Nome = rs.getString("name");
+
+			   String Ambito  = rs.getString("ambito");
 			   
-			   Ambito Topic = rs.getStatement("ambito");
-			   
-			   Tipo Type = rs.getStatement("tipo");
-			   
-			   String Ambito1 = Topic.toString();
-			   
-			   String Tipo1 = Type.toString();
-			   
-			   System.out.printf( "ID = %s , Nome = %s, Ambito = %s , Tipo = %s ", ID ,Nome, Ambito1 , Tipo1 );
+			   String Tipo = rs.getString("tipo");
+
+			   System.out.printf( "ID = %s , Nome = %s, Ambito = %s , Tipo = %s ", ID ,Nome, Ambito, Tipo );
 
 			   System.out.println();
 
@@ -152,7 +129,7 @@ public class FinalDAO {
 	 		String User_Name = r1.getString("Nome");
 	 		String User_Surname = r1.getString("Cognome");
 	 		String CF = r1.getString("CF");
-	 		String Role = r1.getString("Ruolo");
+	 		String Role = r1.getString("Ruolo";)
 	 		partecipanti.add(new Utenti(User_ID,User_Name,User_Surname,CF,Role));
 			 		}
 			 	}

@@ -131,7 +131,7 @@ public class FinalDAO {
 	 		String User_Name = r1.getString("Nome");
 	 		String User_Surname = r1.getString("Cognome");
 	 		String CF = r1.getString("CF");
-	 		String Role = r1.getString("Ruolo";)
+	 		String Role = r1.getString("Ruolo");
 	 		partecipanti.add(new Utenti(User_ID,User_Name,User_Surname,CF,Role));
 			 		}
 			 	}

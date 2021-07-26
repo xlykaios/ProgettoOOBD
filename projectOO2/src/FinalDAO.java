@@ -64,12 +64,10 @@ public class FinalDAO {
 			   int ID = rs.getInt("ID");
 
 			   String Nome = rs.getString("name");
-
-			   String Ambito  = rs.getString("ambito");
 			   
-			   String Tipo = rs.getString("tipo");
+			   String Tipo = rs.getString("topic");
 
-			   System.out.printf( "ID = %s , Nome = %s, Ambito = %s , Tipo = %s ", ID ,Nome, Ambito, Tipo );
+			   System.out.printf( "ID = %s , Nome = %s, Topic = %s ", ID ,Nome, Topic );
 
 			   System.out.println();
 
@@ -81,14 +79,14 @@ public class FinalDAO {
 		 int ID = 0; //inserire valore id 
 		 boolean state = true;
 		 int[] lista_users = {0,1,2}; //inserire lista utenti partecipanti tramite i loro id
-		 String tipo = "test"; //inserimento del tipo
-		 String ambito = "test"; //inserimento dell'ambito
+		  //inserimento del tipo
+		 String topic = "test"; //inserimento dell'ambito
 		 String name = "test"; //inserimento del nome progetto
 		 
 		 String sql = "insert into public.progetti";
 		 
 		 Statement stmt = connection.createStatement();
-		 stmt.executeUpdate( sql + "VALUES('"+ID+"','"+state+"','"+lista_users+"','"+tipo+"','"+ambito+"','"+name+"');");
+		 stmt.executeUpdate( sql + "VALUES('"+ID+"','"+state+"','"+lista_users+"','"+topic+"','"+name+"');");
 	}
 	
 	public static void GetPartecipanti() throws SQLException{

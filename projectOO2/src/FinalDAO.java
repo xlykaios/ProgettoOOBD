@@ -53,12 +53,13 @@ public class FinalDAO {
 	public static void getProjectsbyTopic() throws SQLException{
 		Connection connection = FinalDAO.connessione();
 		 //inserire qui la stringa di selezione dinamica del tipo di dato ricercato
-		 String search = "topic = '' ";
-		 String sql = "select * from public.progetti where ";
-		 // selezione progetto in base al topic
+
+		 String search = "ambito = '' ";
+		 String sql = "select * from public.progetti where";
+
 		
 		 Statement stmt = connection.createStatement();
-		 ResultSet rs = stmt.executeQuery( sql );
+		 ResultSet rs = stmt.executeQuery( sql + search );
 		 //qui verranno riportati tutti i valori ottenuti dal getprojects by topic
 		 while ( rs.next() ) {
 
@@ -68,15 +69,9 @@ public class FinalDAO {
 
 			   String Ambito  = rs.getString("ambito");
 			   
-<<<<<<< HEAD
-			   String Tipo = rs.getString("topic");
-
-			   System.out.printf( "ID = %s , Nome = %s, Topic = %s ", ID ,Nome, Topic );
-=======
 			   String Tipo = rs.getString("tipo");
 
 			   System.out.printf( "ID = %s , Nome = %s, Ambito = %s , Tipo = %s ", ID ,Nome, Ambito, Tipo );
->>>>>>> parent of 6112da0 (Debug)
 
 			   System.out.println();
 

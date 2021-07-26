@@ -60,12 +60,12 @@ public class PanelNuovoProgetto extends JPanel {
 		textFieldNome.setColumns(10);
 		
 		JComboBox comboBoxTopicNewP = new JComboBox();
-		comboBoxTopicNewP.setModel(new DefaultComboBoxModel(new String[] {"Topic1", "Topic2", "Topic3"}));
+		comboBoxTopicNewP.setModel(new DefaultComboBoxModel(new String[] {"Ricerca di Base", "Sviluppo Industriale", "Ricerca Industriale", "Sviluppo Sperimentale", "Ricerca Sperimentale"}));
 		comboBoxTopicNewP.setBounds(298, 156, 130, 27);
 		add(comboBoxTopicNewP);
 		
 		JComboBox comboBoxAmbitoNewP = new JComboBox();
-		comboBoxAmbitoNewP.setModel(new DefaultComboBoxModel(new String[] {"Ambito1", "Ambito2", "Ambito3"}));
+		comboBoxAmbitoNewP.setModel(new DefaultComboBoxModel(new String[] {"Fisica", "Medicina", "Informatica", "Matematica", "Automatismi", "Economia", "Meccanica"}));
 		comboBoxAmbitoNewP.setBounds(298, 217, 130, 27);
 		add(comboBoxAmbitoNewP);
 		

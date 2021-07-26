@@ -150,7 +150,7 @@ public class PanelCercaProgetto extends JPanel {
 					ResultSet rs = pst.executeQuery(sql);
 					
 					while(rs.next()) {
-						comboBoxTopic.addItem(rs.getString("tipo"));
+						comboBoxTopic.addItem(rs.getString("topic"));
 					}
 				} catch (Exception e) {
 

@@ -73,10 +73,10 @@ public class FinalDAO {
 		Connection connection = FinalDAO.connessione();
 		 //inserire qui la stringa di selezione dinamica del tipo di dato ricercato
 		 String search = "ambito = '' ";
-		 String sql = "select * from public.progetti where";
+		 String sql = "select * from public.progetti";
 		
 		 Statement stmt = connection.createStatement();
-		 ResultSet rs = stmt.executeQuery( sql + search );
+		 ResultSet rs = stmt.executeQuery( sql );
 		 //qui verranno riportati tutti i valori ottenuti dal getprojects by topic
 		 while ( rs.next() ) {
 
